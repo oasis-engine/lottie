@@ -1,13 +1,17 @@
 import BaseProperty from './BaseProperty';
+import { TypeValueProperty } from './BaseProperty';
 
 /**
  * unidimensional value property
- * @private
+ * @internal
  */
 export default class ValueProperty extends BaseProperty {
-  constructor(data, mult) {
+  constructor(data: TypeValueProperty, mult: number = 1) {
     super(data, mult);
-    this.propType = 'unidimensional';
-    this.v = mult ? data.k * mult : data.k;
+    this.v = mult ? this.value * mult : this.value;
+  }
+
+  update() {
+    this.v = this.value * this.mult;
   }
 }
